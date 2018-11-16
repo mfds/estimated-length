@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Concert length
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      0.2
 // @description  a quick way to have an estimate over a concert duration
 // @author       Michele Fiordispina <michele.fiordispina@gmail.com>
 // @match        https://www.setlist.fm/*.html
