@@ -43,26 +43,21 @@ const config = () => {
 }
 
 const getSetlist = async (id) => {
-    GM_log(setList);
     try {
         return (await setList.get(`/setlist/${id}`)).data;
     } catch (e) {
-        GM_log(e);
         return {};
     }
 }
 
 const getLength = async (artist, track) => {
     try {
-        GM_log(`Fetching: ${artist} - ${track}`)
         const data = (await lastFm.get('/', {
             params: {artist, track}
         })).data;
-        GM_log(data.track.duration);
 
         return Number(data.track.duration);
     } catch (error) {
-        GM_log(error);
         return 0;
     }
 };
