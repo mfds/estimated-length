@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Concert length
 // @namespace    http://tampermonkey.net/
-// @version      0.2
+// @version      0.3
 // @description  a quick way to have an estimate over a concert duration
 // @author       Michele Fiordispina <michele.fiordispina@gmail.com>
 // @match        https://www.setlist.fm/*.html
@@ -74,12 +74,12 @@ const main = async (id) => {
 
     const totalLength = await songs.reduce(async (a, c, i) => {
         const length = (await getLength(...(Array.isArray(c) ? c : [artist, c])));
-        const duration = moment.utc(moment.duration(length).asMilliseconds()).format("mm:ss");
+        const duration = moment.utc(length).format("mm:ss");
         $('.songPart').eq(i).append(`<span style="float: right;">${duration}</span>`);
         return await a + length;
     }, Promise.resolve(0));
 
-    const totalDuration = moment.utc(moment.duration(totalLength).asMilliseconds()).format("HH:mm:ss");
+    const totalDuration = moment.utc(totalLength).format("HH:mm:ss");
     $('.amount').before(`<span>ED: ${totalDuration}</span>`);
 };
 
